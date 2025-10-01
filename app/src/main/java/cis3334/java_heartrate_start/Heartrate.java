@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 import java.sql.Date;
 
 @Entity
-public class Heartrate {
+public class Heartrate {// Testing
     public Integer pulse;       // actual rate in beats per minute
     public Integer age;            // age when heart rate measurement was taken
     public Double maxHeartRate;    // calculated maximum rate based on age
