@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Heart rate zone colors -->
+    <color name="colorZone1">#2E7D32</color>
+    <color name="colorZone2">#388E3C</color>
+    <color name="colorZone3">#F9A825</color>
+    <color name="colorZone4">#F57C00</color>
+    <color name="colorZone5">#D32F2F</color>
+</resources>

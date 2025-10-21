@@ -1,81 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
+    <!-- Title -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Add a Heartrate"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Pulse:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextPulse" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Age:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextAge" />
-
+    <!-- Pulse input -->
     <EditText
         android:id="@+id/editTextPulse"
-        android:layout_width="129dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pulse"
+        android:inputType="number" />
 
+    <!-- Age input -->
     <EditText
         android:id="@+id/editTextAge"
-        android:layout_width="129dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/editTextPulse"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPulse" />
+        android:layout_marginBottom="8dp" />
 
+    <!-- Insert button -->
     <Button
         android:id="@+id/buttonInsert"
-        android:layout_width="114dp"
-        android:layout_height="91dp"
-        android:text="Insert"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextPulse"
-        app:layout_constraintTop_toTopOf="@+id/editTextPulse" />
-
-    <EditText
-        android:id="@+id/editTextDisplay"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
+        android:text="Insert" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Optional display line -->
+    <TextView
+        android:id="@+id/editTextDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of heartrates = 0"
+        android:layout_marginTop="8dp" />
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHeartrate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

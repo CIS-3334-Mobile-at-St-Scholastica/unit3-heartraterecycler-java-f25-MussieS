@@ -9,10 +9,9 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
     private HeartrateRepository heartrateRepository;
-
     private LiveData<List<Heartrate>> heartrateList;
 
-    public MainViewModel (Application application) {
+    public MainViewModel(Application application) {
         super(application);
         heartrateRepository = new HeartrateRepository(application);
         heartrateList = heartrateRepository.getAll();
@@ -23,8 +22,22 @@ public class MainViewModel extends AndroidViewModel {
         heartrateRepository.insert(hr);
     }
 
-    public LiveData<List<Heartrate>> getAllHeartrates () {
+    public LiveData<List<Heartrate>> getAllHeartrates() {
         heartrateList = heartrateRepository.getAll();
         return heartrateList;
     }
+
+    // ✅ Add these methods below
+
+    public Heartrate getHeartrateAt(int position) {
+        if (heartrateList.getValue() == null) return null;
+        if (position < 0 || position >= heartrateList.getValue().size()) return null;
+        return heartrateList.getValue().get(position);
+    }
+
+    public int getHeartrateCount() {
+        if (heartrateList.getValue() == null) return 0;
+        return heartrateList.getValue().size();
+    }
+
 }

@@ -3,6 +3,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +16,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextPulse;
-    EditText editTextAge;
+    EditText  editTextPulse;
+    EditText  editTextAge;
     EditText editTextDisplay;           // used to display the heart rates from the databas
     // TODO: In Unit 5 will will replace the editText with a RecycleView
     Button buttonInsert;
     MainViewModel mainViewModel;
+    RecyclerView recyclerViewHeartrate;
+    HeartrateAdapter heartrateAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
         setupInsertButton();            // Set up the OnClickListener for the insert button
         setupLiveDataObserver();
+
+        recyclerViewHeartrate = findViewById(R.id.recyclerViewHeartrate);
+        recyclerViewHeartrate.setLayoutManager(new LinearLayoutManager(this));
+        heartrateAdapter = new HeartrateAdapter(getApplication(), mainViewModel);
+        recyclerViewHeartrate.setAdapter(heartrateAdapter);
+
     }
 
+
+
     private void setupLiveDataObserver() {
-        // Create the observer for the list of heart rates
-        mainViewModel.getAllHeartrates().observe(this, new Observer<List<Heartrate>>() {
-            @Override
-            public void onChanged(@Nullable List<Heartrate> allHeartrates) {
-                Log.d("CIS 3334", "MainActivity -- LiveData Observer -- Number of Pizzas = "+allHeartrates.size());
-                editTextDisplay.setText("Number of heartrates = "+allHeartrates.size());
-                // TODO: update the RecycleView Array Adapter
+        mainViewModel.getAllHeartrates().observe(this, allHeartrates -> {
+            editTextDisplay.setText("Number of heartrates = " + allHeartrates.size());
+            if (heartrateAdapter != null) {
+                heartrateAdapter.setData(allHeartrates); // replaces old data
+                heartrateAdapter.notifyDataSetChanged();
             }
         });
     }
+
 
     /**
      *  Set up the Insert Heartrate button so it adds a new heart rate reading to the database
